@@ -1,5 +1,8 @@
 import Fastify from "fastify";
 import httpProxy from "@fastify/http-proxy";
+import fastifyStatic from "@fastify/static";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 
 const PORT = Number(process.env.PORT) || 4000;
 const NEXT_PORT = Number(process.env.NEXT_PORT) || 3000;
@@ -7,6 +10,8 @@ const DOCS_PORT = Number(process.env.DOCS_PORT) || 4321;
 
 async function main() {
   const app = Fastify({ logger: true });
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
 
   app.get("/api", async () => {
     return { ok: true, service: "backend", message: "Fastify + TypeScript" };
@@ -15,14 +20,13 @@ async function main() {
   app.get("/api/health", async () => {
     return { status: "healthy" };
   });
-
   await app.register(httpProxy, {
-    upstream: `http://127.0.0.1:${DOCS_PORT}`,
+    upstream: `http://localhost:${DOCS_PORT}`,
     prefix: "/docs",
   });
 
   await app.register(httpProxy, {
-    upstream: `http://127.0.0.1:${NEXT_PORT}`,
+    upstream: `http://localhost:${NEXT_PORT}`,
   });
 
   try {
