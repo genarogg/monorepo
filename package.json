@@ -11,6 +11,8 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
+    "start": "turbo run start --filter=backend --filter=my-app && turbo run preview --filter=strong-series",
+    "docs": "npm run dev -w docs",
     "lint": "turbo run lint",
     "clean": "turbo run clean"
   },
