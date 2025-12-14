@@ -8,7 +8,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "set NODE_ENV=production && node dist/index.js",
     "lint": "echo \"No lint configurado\"",
-    "prismaProvider": "tsx scripts/detect-provider.ts"
+    "prismaProvider": "tsx scripts/prismaProvider.ts"
   },
   "dependencies": {
     "fastify": "^5.0.0",

@@ -12,18 +12,17 @@
     "dev": "turbo run dev --parallel",
     "dev:server": "turbo run dev --filter=backend",
     "dev:client": "turbo run dev --filter=frontend",
-    "dev:server:prismaProvider":"turbo run dev --filter=backend",
     "build": "turbo run build",
     "start": "turbo run start --filter=backend --filter=frontend",
     "docs": "npm run dev -w docs",
     "lint": "turbo run lint",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean",
+    "-----server-----": "-----------------------------------------",
+    "prismaProvider": "cd backend && bun prismaProvider"
   },
   "devDependencies": {
     "turbo": "^2.3.3"
   },
   "packageManager": "npm@10.9.4",
-  "dependencies": {
-   
-  }
+  "dependencies": {}
 }
