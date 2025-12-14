@@ -9,7 +9,7 @@ const NEXT_PORT = Number(process.env.NEXT_PORT) || 3000;
 const DOCS_PORT = Number(process.env.DOCS_PORT) || 4321;
 
 async function main() {
-  const app = Fastify({ logger: true });
+  const app = Fastify();
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
@@ -31,6 +31,8 @@ async function main() {
 
   try {
     await app.listen({ port: PORT, host: "0.0.0.0" });
+
+    console.log(`la app esta corriendo en el puerto http://localhost:${PORT}`)
   } catch (err) {
     app.log.error(err);
     process.exit(1);
