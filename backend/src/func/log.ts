@@ -1,19 +1,19 @@
 import colors from "colors";
 
-const success = (text: string) => {
-  return console.log(colors.green(text));
+const success = (...args: any[]) => {
+  return console.log(colors.green(JSON.stringify(args.length === 1 ? args[0] : args, null, 2)));
 };
 
-const warning = (text: string) => {
-  return console.log(colors.yellow(text));
+const warning = (...args: any[]) => {
+  return console.log(colors.yellow(JSON.stringify(args.length === 1 ? args[0] : args, null, 2)));
 };
 
-const error = (text: string) => {
-  return console.log(colors.red(text));
+const error = (...args: any[]) => {
+  return console.log(colors.red(JSON.stringify(args.length === 1 ? args[0] : args, null, 2)));
 };
 
-const info = (text: string) => {
-  return console.log(colors.cyan(text));
+const info = (...args: any[]) => {
+  return console.log(colors.cyan(JSON.stringify(args.length === 1 ? args[0] : args, null, 2)));
 };
 
 const log = {
