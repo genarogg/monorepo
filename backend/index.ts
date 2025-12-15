@@ -18,7 +18,7 @@ import {
   compressFastify,
   proxy,
   multipart,
-  // graphql,
+  graphql,
   // viewEJS,
 } from "./src/config"
 
@@ -36,7 +36,7 @@ const registerPlugins = async () => {
   await staticFiles(server);
   await proxy(server);
   // Plugins de funcionalidad
-  // await graphql(server);
+  await graphql(server);
 
   // Plugins de rendimiento (en producción)
   if (process.env.NODE_ENV === "production") {
@@ -71,7 +71,7 @@ const registerPlugins = async () => {
 
     table.push(
       ['Servidor', colors.green(`http://localhost:${PORT}`)],
-      // ['Graphql', colors.green(`http://localhost:${PORT}/graphql`)],
+      ['Graphql', colors.green(`http://localhost:${PORT}/graphql`)],
       ["Rest API", colors.green(`http://localhost:${PORT}/api`)],
       ['Documentacion', colors.cyan(`http://localhost:${PORT}/docs`)],
       ["db estatus", colors.cyan(dbStatus)]

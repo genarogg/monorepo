@@ -39,7 +39,12 @@
     "console-clear": "^1.1.1",
     "ejs": "^3.1.10",
     "fastify-slow-down": "^2.0.1",
-    "jsonwebtoken": "^9.0.3"
+    "jsonwebtoken": "^9.0.3",
+    "graphql": "^16.12.0",
+    "graphql-tag": "^2.12.6",
+    "graphql-upload-minimal": "^1.6.4",
+    "@apollo/server": "^5.2.0",
+    "@as-integrations/fastify": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

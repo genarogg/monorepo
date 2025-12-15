@@ -1,4 +1,4 @@
-// import graphql from './graphql';
+import { registerGraphQL as graphql } from './graphql';
 
 import viewEJS from './viewEJS';
 import staticFiles from './staticFiles';
@@ -16,7 +16,7 @@ import proxy from './proxy';
 export {
     staticFiles,
     viewEJS,
-    // graphql,
+    graphql,
     caching,
     rateLimit,
     helmet,

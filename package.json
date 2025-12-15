@@ -27,6 +27,9 @@
   },
   "packageManager": "npm@10.9.4",
   "dependencies": {
-    
+    "graphql-depth-limit": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/graphql-depth-limit": "^1.1.6"
   }
 }
