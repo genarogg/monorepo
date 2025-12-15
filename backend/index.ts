@@ -47,8 +47,8 @@ const registerPlugins = async () => {
   }
 }
 
-// import tack from "./src/tasks"
-// import router from 'src/routers';
+import tack from "@/tasks"
+import router from '@/routers';
 
 
 
@@ -56,7 +56,7 @@ const registerPlugins = async () => {
   clear();
   try {
     await registerPlugins()
-    // server.register(router, { prefix: '/api' })
+    server.register(router, { prefix: '/api' })
     const port = Number(PORT) || 3500
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });
@@ -67,7 +67,7 @@ const registerPlugins = async () => {
     });
 
     /* ejecutar tareas programadas */
-    // tack()
+    tack()
 
     table.push(
       ['Servidor', colors.green(`http://localhost:${PORT}`)],
