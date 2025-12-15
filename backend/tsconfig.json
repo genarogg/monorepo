@@ -9,7 +9,13 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@prisma": ["./prisma/fn/client"],
+      "@fn": ["./src/func/index.ts"],
+    },
   },
-  "include": ["src", "index.ts"]
+  "include": ["src", "index.ts", "prisma/*"]
 }

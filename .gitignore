@@ -44,3 +44,5 @@ pnpm-debug.log*
 # turbo
 .turbo
 backend/prisma/dev.db
+
+backend/prisma/fn/client
