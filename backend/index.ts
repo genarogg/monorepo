@@ -25,7 +25,7 @@ import {
 const registerPlugins = async () => {
   // Plugins de configuración básica primero
   await helmet(server);
-  await corsFastify(server);
+  // await corsFastify(server);
   await compressFastify(server);
 
   // Plugins de parsing
@@ -74,7 +74,7 @@ const registerPlugins = async () => {
       // ['Graphql', colors.green(`http://localhost:${PORT}/graphql`)],
       ["Rest API", colors.green(`http://localhost:${PORT}/api`)],
       ['Documentacion', colors.cyan(`http://localhost:${PORT}/docs`)],
-      // ["db estatus", colors.cyan(dbStatus)]
+      ["db estatus", colors.cyan(dbStatus)]
     );
 
     console.log(table.toString());
