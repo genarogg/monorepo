@@ -6,6 +6,7 @@ const rateLimite = (server: FastifyInstance) => {
         max: 100,
         timeWindow: '1 minute',
         errorResponseBuilder: (req: any, context: any) => {
+            console.log(context)
             return {
                 code: 429,
                 error: 'Too Many Requests',

@@ -1,40 +1,86 @@
-import Fastify from "fastify";
+import Fastify, { FastifyInstance } from 'fastify'
+import Table from 'cli-table3';
+import clear from "console-clear";
+import colors from "colors";
+import 'dotenv/config';
 
-import { fileURLToPath } from "node:url";
-import path from "node:path";
-import { proxy } from "./src/config"
+const { PORT } = process.env;
+const server: FastifyInstance = Fastify()
 
-const PORT = Number(process.env.PORT) || 4000;
+import {
+  dbConection,
+  viewEJS,
+  staticFiles,
+  // graphql,
+  caching,
+  helmet,
+  rateLimit,
+  underPressureFastify,
+  corsFastify,
+  compressFastify,
+  proxy,
+  multipart
+} from "./src/config"
 
+const registerPlugins = async () => {
+  // Plugins de configuración básica primero
+  await helmet(server);
+  await corsFastify(server);
+  await compressFastify(server);
 
+  // Plugins de parsing
+  await multipart(server);
 
-async function main() {
-  const app = Fastify();
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
+  // Plugins de vista y archivos estáticos
+  await viewEJS(server);
+  await staticFiles(server);
+  await proxy(server);
+  // Plugins de funcionalidad
+  // await graphql(server);
 
-
-  await proxy(app);
-
-  app.get("/api", async () => {
-    return { ok: true, service: "backend", message: "Fastify + TypeScript" };
-  });
-
-  app.get("/api/health", async () => {
-    return { status: "healthy" };
-  });
-
-
-
-
-  try {
-    await app.listen({ port: PORT, host: "0.0.0.0" });
-
-    console.log(`la app esta corriendo en el puerto http://localhost:${PORT}`)
-  } catch (err) {
-    app.log.error(err);
-    process.exit(1);
+  // Plugins de rendimiento (en producción)
+  if (process.env.NODE_ENV === "production") {
+    
+    await underPressureFastify(server);
+    await caching(server);
+    await rateLimit(server);
   }
 }
 
-main();
+// import tack from "./src/tasks"
+// import router from 'src/routers';
+
+
+
+(async () => {
+  clear();
+  try {
+    await registerPlugins()
+    // server.register(router, { prefix: '/api' })
+    const port = Number(PORT) || 3500
+    const dbStatus = await dbConection() || "";
+    await server.listen({ port, host: '0.0.0.0' });
+
+    const table = new Table({
+      head: ['Servicio', 'URL'],
+      colWidths: [20, 50]
+    });
+
+    /* ejecutar tareas programadas */
+    // tack()
+
+    table.push(
+      ['Servidor', colors.green(`http://localhost:${PORT}`)],
+      // ['Graphql', colors.green(`http://localhost:${PORT}/graphql`)],
+      ["Rest API", colors.green(`http://localhost:${PORT}/api`)],
+      ['Documentacion', colors.cyan(`http://localhost:${PORT}/docs`)],
+      // ["db estatus", colors.cyan(dbStatus)]
+    );
+
+    console.log(table.toString());
+  } catch (err) {
+    console.log(err)
+  }
+})();
+
+export default server;
