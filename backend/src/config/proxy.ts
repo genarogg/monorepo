@@ -9,10 +9,12 @@ const proxy = async (server: FastifyInstance) => {
     await server.register(httpProxy, {
         upstream: `http://localhost:${DOCS_PORT}`,
         prefix: "/docs",
+
     });
 
     await server.register(httpProxy, {
         upstream: `http://localhost:${NEXT_PORT}`,
+        prefix: "/",
     });
 }
 

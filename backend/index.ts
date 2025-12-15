@@ -32,8 +32,8 @@ const registerPlugins = async () => {
   await multipart(server);
 
   // Plugins de vista y archivos estáticos
-  await viewEJS(server);
-  await staticFiles(server);
+  // await viewEJS(server);
+  // await staticFiles(server);
   await proxy(server);
   // Plugins de funcionalidad
   // await graphql(server);
