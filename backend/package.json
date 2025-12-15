@@ -8,7 +8,13 @@
     "build": "tsc -p tsconfig.json",
     "start": "set NODE_ENV=production && node dist/index.js",
     "lint": "echo \"No lint configurado\"",
-    "prismaProvider": "tsx scripts/prismaProvider.ts"
+    "-----Prisma-----": "-----------------------------------------",
+    "prismaProvider": "tsx scripts/prismaProvider.ts",
+    "prismaInit": "npx prisma migrate dev --name init",
+    "prismaReset": "npx prisma migrate reset",
+    "prismaMigrate": "npx prisma migrate",
+    "prismaMigrateOnli": "npx prisma migrate --create-only",
+    "prismaGenerate": "npx prisma generate"
   },
   "dependencies": {
     "fastify": "^5.0.0",

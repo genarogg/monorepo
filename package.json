@@ -18,7 +18,12 @@
     "lint": "turbo run lint",
     "clean": "turbo run clean",
     "-----server-----": "-----------------------------------------",
-    "prismaProvider": "cd backend && bun prismaProvider"
+    "prismaProvider": "cd backend && npm run prismaProvider",
+    "prismaInit": "cd backend && npm run prismaInit",
+    "prismaReset": "cd backend && npx prisma migrate reset",
+    "prismaMigrate": "cd backend && npx prisma migrate",
+    "prismaMigrateOnli": "cd backend && npx prisma migrate --create-only",
+    "prismaGenerate": "cd backend && npx prisma generate"
   },
   "devDependencies": {
     "turbo": "^2.3.3"
