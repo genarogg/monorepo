@@ -15,6 +15,7 @@ const proxy = async (server: FastifyInstance) => {
     await server.register(httpProxy, {
         upstream: `http://localhost:${NEXT_PORT}`,
         prefix: "/",
+ 
     });
 }
 

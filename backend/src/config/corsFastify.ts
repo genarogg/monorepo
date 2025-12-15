@@ -3,9 +3,9 @@ import cors from '@fastify/cors';
 
 const corsFastify = (server: FastifyInstance) => {
     return server.register(cors, {
-        origin: '*',
+        origin: 'https://tudocs.com',
         allowedHeaders: ['Content-Type', 'Authorization'],
-        credentials: true
+        // credentials: true
     });
 }
 

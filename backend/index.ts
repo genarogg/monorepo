@@ -9,21 +9,22 @@ const server: FastifyInstance = Fastify()
 
 import {
   dbConection,
-  viewEJS,
   staticFiles,
-  // graphql,
   caching,
   helmet,
   rateLimit,
   underPressureFastify,
-  corsFastify,
+  // corsFastify,
   compressFastify,
   proxy,
-  multipart
+  multipart,
+  // graphql,
+  // viewEJS,
 } from "./src/config"
 
 const registerPlugins = async () => {
   // Plugins de configuración básica primero
+  // await viewEJS(server);
   await helmet(server);
   // await corsFastify(server);
   await compressFastify(server);
@@ -32,8 +33,7 @@ const registerPlugins = async () => {
   await multipart(server);
 
   // Plugins de vista y archivos estáticos
-  // await viewEJS(server);
-  // await staticFiles(server);
+  await staticFiles(server);
   await proxy(server);
   // Plugins de funcionalidad
   // await graphql(server);
