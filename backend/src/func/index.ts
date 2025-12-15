@@ -5,8 +5,8 @@ import validarCapchat from "./validarCapchat";
 import verificarToken from "./verificarToken";
 import { encriptarContrasena, compararContrasena } from "./encriptarContrasena";
 import { createResponse, successResponse, errorResponse, warningResponse } from "./response";
-import prisma from "./prisma";
 import crearBitacora from "./crearBitacora";
+import prisma from "./prisma";
 
 export {
     log,
