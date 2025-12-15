@@ -8,7 +8,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import type { FastifyInstance } from 'fastify'
 import { createReadStream, existsSync } from 'node:fs'
 import resolvers from '@/graphql/resolvers'
-import depthLimit from "graphql-depth-limit";
+
 
 function loadTypeDefs() {
     const dir = join(process.cwd(), 'src', 'graphql', 'schema')
@@ -24,7 +24,6 @@ export async function registerGraphQL(app: FastifyInstance) {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        validationRules: [depthLimit(10)],
         plugins: [fastifyApolloDrainPlugin(app), ApolloServerPluginLandingPageLocalDefault()],
     })
     await server.start()

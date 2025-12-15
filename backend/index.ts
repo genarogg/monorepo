@@ -50,8 +50,6 @@ const registerPlugins = async () => {
 import tack from "@/tasks"
 import router from '@/routers';
 
-
-
 (async () => {
   clear();
   try {

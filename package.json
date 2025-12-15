@@ -26,11 +26,6 @@
     "prismaGenerate": "cd backend && npx prisma generate"
   },
   "packageManager": "npm@10.9.4",
-  "dependencies": {
-    "graphql-depth-limit": "^1.1.0",
-    "node-cron": "^4.2.1"
-  },
-  "devDependencies": {
-    "@types/graphql-depth-limit": "^1.1.6"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
