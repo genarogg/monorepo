@@ -14,19 +14,29 @@ import {
   helmet,
   rateLimit,
   underPressureFastify,
-  // corsFastify,
+  corsFastify,
   compressFastify,
-  proxy,
+  // proxy,
   multipart,
   graphql,
   // viewEJS,
 } from "./src/config"
 
 const registerPlugins = async () => {
+
+
+  // Plugins de rendimiento (en producción)
+  if (process.env.NODE_ENV === "production") {
+
+    await underPressureFastify(server);
+    await caching(server);
+    await rateLimit(server);
+  }
+
   // Plugins de configuración básica primero
   // await viewEJS(server);
   await helmet(server);
-  // await corsFastify(server);
+  await corsFastify(server);
   await compressFastify(server);
 
   // Plugins de parsing
@@ -34,17 +44,10 @@ const registerPlugins = async () => {
 
   // Plugins de vista y archivos estáticos
   await staticFiles(server);
-  await proxy(server);
+  // await proxy(server);
   // Plugins de funcionalidad
   await graphql(server);
 
-  // Plugins de rendimiento (en producción)
-  if (process.env.NODE_ENV === "production") {
-    
-    await underPressureFastify(server);
-    await caching(server);
-    await rateLimit(server);
-  }
 }
 
 import tack from "@/tasks"
