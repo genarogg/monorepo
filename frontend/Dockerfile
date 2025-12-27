@@ -1,4 +1,4 @@
-FROM node:20-slim AS builder
+FROM node:22 AS builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ WORKDIR /app/frontend
 RUN npm run build
 
 # Stage de producción
-FROM node:20-slim AS runner
+FROM node:22 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
