@@ -3,7 +3,7 @@ FROM node:20-slim AS builder
 WORKDIR /app
 
 # Copiamos los archivos de configuración del monorepo
-COPY package.json package-lock.json turbo.json ./
+COPY package.json turbo.json ./
 COPY backend/package.json ./backend/
 
 # Instalamos las dependencias

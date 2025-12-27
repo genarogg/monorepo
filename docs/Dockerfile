@@ -1,9 +1,9 @@
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
 # Copiamos archivos de configuración
-COPY package.json package-lock.json turbo.json ./
+COPY package.json turbo.json ./
 COPY docs/package.json ./docs/
 
 # Instalamos dependencias

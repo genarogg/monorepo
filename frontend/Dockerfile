@@ -3,7 +3,7 @@ FROM node:20-slim AS builder
 WORKDIR /app
 
 # Copiamos archivos de configuración
-COPY package.json package-lock.json turbo.json ./
+COPY package.json turbo.json ./
 COPY frontend/package.json ./frontend/
 
 # Instalamos dependencias
