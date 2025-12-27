@@ -14,9 +14,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@prisma": ["./prisma/fn/client"],
+
       "@fn": ["./src/func/index.ts"],
     },
   },
-  "include": ["src", "index.ts", "prisma/*"]
+  "include": ["src", "index.ts"]
 }
