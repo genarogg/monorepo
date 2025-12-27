@@ -41,7 +41,7 @@ services:
       dockerfile: docs/Dockerfile
     container_name: monorepo-docs
     ports:
-      - "8080:80"
+      - "8081:80"
     networks:
       - monorepo-network
 
