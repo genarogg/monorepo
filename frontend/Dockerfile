@@ -27,7 +27,7 @@ ENV PORT=3000
 # Copiamos los artefactos necesarios del builder
 COPY --from=builder /app/frontend/dist ./dist
 COPY --from=builder /app/frontend/package.json ./
-COPY --from=builder /app/frontend/vite.config.ts ./  # ← AGREGADO
+COPY --from=builder /app/frontend/vite.config.ts ./
 COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
