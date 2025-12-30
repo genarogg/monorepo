@@ -5,10 +5,10 @@ services:
       dockerfile: backend/Dockerfile
     container_name: monorepo-backend
     ports:
-      - "7000:7000"
+      - "5500:5500"
     environment:
       - NODE_ENV=production
-      - PORT=7000
+      - PORT=5500
       - DATABASE_URL=file:./dev.db
     volumes:
       # Persistencia para SQLite
