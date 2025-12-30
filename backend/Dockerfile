@@ -23,7 +23,7 @@ FROM node:22 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV PORT=7000
+ENV SERVER_PORT=5500
 
 # Copiamos los artefactos necesarios del builder
 COPY --from=builder /app/backend/dist ./dist
@@ -34,6 +34,6 @@ COPY --from=builder /app/backend/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/backend/prisma ./prisma
 
-EXPOSE 7000
+EXPOSE 5500
 
 CMD ["node", "dist/index.js"]

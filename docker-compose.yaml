@@ -8,7 +8,7 @@ services:
       - "5500:5500"
     environment:
       - NODE_ENV=production
-      - PORT=5500
+      - SERVER_PORT=5500
       - DATABASE_URL=file:./dev.db
     volumes:
       # Persistencia para SQLite

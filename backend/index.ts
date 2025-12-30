@@ -26,8 +26,10 @@ const registerPlugins = async () => {
 
 
   // Plugins de rendimiento (en producción)
-  if (process.env.NODE_ENV === "production") {
+  const PRODUCTION = process.env.NODE_ENV === "production"
 
+  if (PRODUCTION) {
+    console.log("PRODUCTION: ", PRODUCTION)
     await underPressureFastify(server);
     await caching(server);
     await rateLimit(server);
@@ -58,6 +60,7 @@ import router from '@/routers';
   try {
     await registerPlugins()
     server.register(router, { prefix: '/' })
+    console.log(SERVER_PORT)
     const port = Number(SERVER_PORT) || 3500
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });
