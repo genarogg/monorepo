@@ -11,9 +11,15 @@ export default defineConfig({
     }),
   ],
   server: {
+    host: '0.0.0.0',
     allowedHosts: true
   },
   preview: {
-    allowedHosts: true
+    host: '0.0.0.0',
+    allowedHosts: [
+      'gw8oc4w4gkco0ksokk480ks0.nimbux.cloud',
+      'o4k4gwkgcg4o4wkw0coww4oo.nimbux.cloud',
+      '.nimbux.cloud' // Allow all nimbux.cloud subdomains
+    ]
   }
 })
