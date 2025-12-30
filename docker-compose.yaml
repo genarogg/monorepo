@@ -9,8 +9,6 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=7000
-      # Si usas SQLite, la URL suele ser file:./dev.db
-      # Asegúrate de que coincida con tu .env o schema.prisma
       - DATABASE_URL=file:./dev.db
     volumes:
       # Persistencia para SQLite
@@ -24,7 +22,7 @@ services:
       dockerfile: frontend/Dockerfile
     container_name: monorepo-frontend
     ports:
-      - "3000:3000"
+      - "3500:3000"
     environment:
       - NODE_ENV=production
       # Si el frontend necesita llamar al backend desde el navegador (cliente), usa localhost:7000
