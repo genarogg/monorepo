@@ -3,9 +3,10 @@ import ejs from 'ejs';
 import path from 'path';
 
 const viewEJS = (server: any) => {
+
     return server.register(fastifyView, {
         engine: { ejs },
-        root: path.join(process.cwd(), 'src', "server", 'views'),
+        root: path.join(process.cwd(), 'src', 'views'),
         viewExt: 'ejs',
     });
 }

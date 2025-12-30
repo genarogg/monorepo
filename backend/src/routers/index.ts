@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import type { FastifyRequest, FastifyReply } from 'fastify';
 
 const controller = (request: FastifyRequest, reply: FastifyReply) => {
-    return reply.send({ message: 'Hola mundo' });
+    return reply.view("home");
 }
 
 const router = async (fastify: FastifyInstance) => {

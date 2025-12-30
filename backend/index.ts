@@ -19,7 +19,7 @@ import {
   // proxy,
   multipart,
   graphql,
-  // viewEJS,
+  viewEJS,
 } from "./src/config"
 
 const registerPlugins = async () => {
@@ -34,7 +34,7 @@ const registerPlugins = async () => {
   }
 
   // Plugins de configuración básica primero
-  // await viewEJS(server);
+  await viewEJS(server);
   await helmet(server);
   await corsFastify(server);
   await compressFastify(server);
@@ -57,7 +57,7 @@ import router from '@/routers';
   clear();
   try {
     await registerPlugins()
-    server.register(router, { prefix: '/api' })
+    server.register(router, { prefix: '/' })
     const port = Number(SERVER_PORT) || 3500
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });

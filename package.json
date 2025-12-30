@@ -2,7 +2,7 @@
   "name": "monorepo",
   "version": "1.0.0",
   "private": true,
-  "description": "Monorepo con Turborepo: Astro (docs), Next.js (frontend) y Fastify (backend).",
+  "description": "Monorepo con Turborepo: Astro (docs), React.js (frontend) y Fastify (backend).",
   "engines": {
     "node": "22"
   },
@@ -16,7 +16,7 @@
     "dev:server": "turbo run dev --filter=backend",
     "dev:client": "turbo run dev --filter=frontend",
     "build": "turbo run build",
-    "start": "turbo run start --filter=backend --filter=frontend",
+    "start": "turbo run start",
     "docs": "npm run dev -w docs",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
@@ -29,5 +29,6 @@
     "prismaGenerate": "cd backend && npx prisma generate"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "packageManager": "npm@10.9.4"
 }
