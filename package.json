@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Monorepo con Turborepo: Astro (docs), Next.js (frontend) y Fastify (backend).",
+  "engines": {
+    "node": "22"
+  },
   "workspaces": [
     "docs",
     "frontend",
