@@ -31,5 +31,5 @@ COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
 
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "3000"]
 
