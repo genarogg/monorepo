@@ -9,7 +9,7 @@ COPY frontend/package.json ./frontend/
 # Instalamos dependencias
 RUN npm install
 
-# Copiamos código fuente
+# Copiamos código fuente Y archivos de configuración
 COPY frontend ./frontend
 
 # Construimos la aplicación
@@ -27,9 +27,9 @@ ENV PORT=3000
 # Copiamos los artefactos necesarios del builder
 COPY --from=builder /app/frontend/dist ./dist
 COPY --from=builder /app/frontend/package.json ./
+COPY --from=builder /app/frontend/vite.config.ts ./  # ← AGREGADO
 COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
 
 CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "3000"]
-
