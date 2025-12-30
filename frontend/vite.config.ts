@@ -12,13 +12,10 @@ export default defineConfig({
   ],
   server: {
     host: '0.0.0.0',
-    allowedHosts: true
+    allowedHosts: true  // Permite todos los hosts en desarrollo
   },
   preview: {
     host: '0.0.0.0',
-    allowedHosts: [
-      'cs0owogwgco4ckc00swc0gws.nimbux.cloud',
-  
-    ]
+    allowedHosts: true  // Cambiado a true para permitir todos los hosts
   }
 })
