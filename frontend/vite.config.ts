@@ -10,4 +10,9 @@ export default defineConfig({
       },
     }),
   ],
+  preview: {
+    allowedHosts: [
+      'gw8oc4w4gkco0ksokk480ks0.nimbux.cloud',
+    ],
+  },
 })
