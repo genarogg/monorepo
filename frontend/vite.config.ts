@@ -16,6 +16,6 @@ export default defineConfig({
   },
   preview: {
     host: '0.0.0.0',
-    allowedHosts: true  // Cambiado a true para permitir todos los hosts
+    allowedHosts: ['cs0owogwgco4ckc00swc0gws.nimbux.cloud']
   }
 })
