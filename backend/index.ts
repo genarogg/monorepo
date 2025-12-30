@@ -4,7 +4,7 @@ import clear from "console-clear";
 import colors from "colors";
 import 'dotenv/config';
 
-const { PORT } = process.env;
+const { SERVER_PORT } = process.env;
 const server: FastifyInstance = Fastify()
 
 import {
@@ -58,7 +58,7 @@ import router from '@/routers';
   try {
     await registerPlugins()
     server.register(router, { prefix: '/api' })
-    const port = Number(PORT) || 3500
+    const port = Number(SERVER_PORT) || 3500
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });
 
@@ -71,10 +71,10 @@ import router from '@/routers';
     tack()
 
     table.push(
-      ['Servidor', colors.green(`http://localhost:${PORT}`)],
-      ['Graphql', colors.green(`http://localhost:${PORT}/graphql`)],
-      ["Rest API", colors.green(`http://localhost:${PORT}/api`)],
-      ['Documentacion', colors.cyan(`http://localhost:${PORT}/docs`)],
+      ['Servidor', colors.green(`http://localhost:${port}`)],
+      ['Graphql', colors.green(`http://localhost:${port}/graphql`)],
+      ["Rest API", colors.green(`http://localhost:${port}/api`)],
+      ['Documentacion', colors.cyan(`http://localhost:${port}/docs`)],
       ["db estatus", colors.cyan(dbStatus)]
     );
 
