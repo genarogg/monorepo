@@ -27,12 +27,11 @@ ENV SERVER_PORT=5500
 
 # Copiamos los artefactos necesarios del builder
 COPY --from=builder /app/backend/dist ./dist
-COPY --from=builder /app/backend/src/graphql/schema ./src/graphql/schema
-COPY --from=builder /app/backend/src/email/ejs ./src/email/ejs
-COPY --from=builder /app/backend/public ./public
-COPY --from=builder /app/backend/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/backend/prisma ./prisma
+COPY --from=builder /app/backend/public ./public
+COPY --from=builder /app/backend/src ./src
+COPY --from=builder /app/backend/package.json ./
 
 EXPOSE 5500
 
