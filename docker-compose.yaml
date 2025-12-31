@@ -5,13 +5,10 @@ services:
       dockerfile: backend/Dockerfile
     container_name: monorepo-backend
     ports:
-      - "5500:5500"
-    environment:
-      - NODE_ENV=production
-      - SERVER_PORT=5500
-      - DATABASE_URL=file:./dev.db
+      - "${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}"
+    env_file:
+      - .env
     volumes:
-      # Persistencia para SQLite
       - backend_data:/app/prisma
     networks:
       - monorepo-network
@@ -20,14 +17,13 @@ services:
     build:
       context: .
       dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
     container_name: monorepo-frontend
     ports:
-      - "3500:3000"
-    environment:
-      - NODE_ENV=production
-      # Si el frontend necesita llamar al backend desde el navegador (cliente), usa localhost:7000
-      # Si es Server Side Rendering (SSR) llamando al backend, usa http://backend:7000
-      - NEXT_PUBLIC_API_URL=http://localhost:7000
+      - "${FRONTEND_HOST_PORT}:${FRONTEND_CONTAINER_PORT}"
+    env_file:
+      - .env
     depends_on:
       - backend
     networks:
@@ -39,7 +35,9 @@ services:
       dockerfile: docs/Dockerfile
     container_name: monorepo-docs
     ports:
-      - "4500:80"
+      - "${DOCS_HOST_PORT}:${DOCS_CONTAINER_PORT}"
+    env_file:
+      - .env
     networks:
       - monorepo-network
 

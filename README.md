@@ -68,10 +68,9 @@ Puertos típicos en desarrollo local:
 - Frontend (Vite dev): http://localhost:5173
 - Docs (Astro dev): http://localhost:4321
 
-Nota frontend: configura `NEXT_PUBLIC_API_URL` para apuntar al backend:
-- Desarrollo local: `http://localhost:5500`
-- En Docker, desde el navegador: `http://localhost:5500`
-- En SSR dentro del contenedor: `http://backend:5500`
+Nota frontend (Vite):
+- Variables deben empezar con `VITE_` (p. ej., `VITE_API_URL`)
+- Desarrollo local: `VITE_API_URL=http://localhost:5500`
 
 ## Producción local (sin Docker)
 
@@ -91,9 +90,9 @@ docker compose up --build
 ```
 
 Servicios y puertos:
-- Backend: http://localhost:5500
-- Frontend (preview): http://localhost:3500
-- Docs (Nginx): http://localhost:4500
+- Backend: http://localhost:${BACKEND_HOST_PORT}
+- Frontend (preview): http://localhost:${FRONTEND_HOST_PORT}
+- Docs (Nginx): http://localhost:${DOCS_HOST_PORT}
 
 Detener y limpiar:
 
@@ -151,14 +150,20 @@ Además, el backend ejecuta `npx prisma generate` automáticamente en `dev` y `s
   - Script de publicación
 
 ## Variables de entorno
+- Usa `.env` en el root para parametrizar puertos y variables de los contenedores.
+- Compose carga `.env` automáticamente al ejecutar `docker compose up`.
 - Backend:
   - `SERVER_PORT` (por defecto 5500)
   - `DATABASE_URL` (por defecto `file:./dev.db`)
   - Cargar desde `.env` si se requiere
 - Frontend:
-  - `NEXT_PUBLIC_API_URL` para llamadas al backend
+  - `VITE_API_URL` para llamadas al backend (aplica en build)
 - Docs:
   - No requiere variables para funcionamiento básico
+
+Producción:
+- Backend y Docs toman variables en runtime desde el entorno del servidor.
+- Frontend (build estático) requiere que `VITE_API_URL` esté definido en build; se pasa como build arg desde `docker-compose` (ya configurado).
 
 ## Notas
 - Node 22 es requisito en todos los workspaces
