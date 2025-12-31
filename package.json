@@ -27,7 +27,8 @@
     "prismaMigrate": "cd backend && npx prisma migrate",
     "prismaMigrateOnli": "cd backend && npx prisma migrate --create-only",
     "prismaGenerate": "cd backend && npx prisma generate",
-    "-----lib-----": "-----------------------------------------"
+    "-----lib-----": "-----------------------------------------",
+    "publicar": "cd lib && npm run publicar"
   },
   "dependencies": {},
   "devDependencies": {},
