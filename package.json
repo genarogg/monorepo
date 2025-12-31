@@ -26,7 +26,8 @@
     "prismaReset": "cd backend && npx prisma migrate reset",
     "prismaMigrate": "cd backend && npx prisma migrate",
     "prismaMigrateOnli": "cd backend && npx prisma migrate --create-only",
-    "prismaGenerate": "cd backend && npx prisma generate"
+    "prismaGenerate": "cd backend && npx prisma generate",
+    "-----lib-----": "-----------------------------------------"
   },
   "dependencies": {},
   "devDependencies": {},
