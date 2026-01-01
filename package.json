@@ -28,10 +28,15 @@
     "prismaMigrate": "cd backend && npx prisma migrate",
     "prismaMigrateOnli": "cd backend && npx prisma migrate --create-only",
     "prismaGenerate": "cd backend && npx prisma generate",
+    "enumGenerar": "cd backend && npm run enumGenerar",
     "-----lib-----": "-----------------------------------------",
     "publicar": "cd lib && npm run publicar"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/typescript": "^5.0.7",
+    "@graphql-codegen/typescript-operations": "^5.0.7",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.4"
+  },
   "packageManager": "npm@10.9.4"
 }

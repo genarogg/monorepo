@@ -3,5 +3,11 @@ type Query {
   holaMundo: String!
 }
 
-
+enum LocationType {
+  SPACESHIP
+  HOUSE
+  CAMPSITE
+  APARTMENT
+  ROOM
+}
 

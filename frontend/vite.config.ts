@@ -12,7 +12,7 @@ export default defineConfig({
   ],
   server: {
     host: '0.0.0.0',
-    allowedHosts: true  // Permite todos los hosts en desarrollo
+    allowedHosts: true 
   },
   preview: {
     host: '0.0.0.0',
