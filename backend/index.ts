@@ -22,14 +22,12 @@ import {
   viewEJS,
 } from "./src/config"
 
+const PRODUCTION = process.env.PRODUCTION !== "false"
+
 const registerPlugins = async () => {
-
-
   // Plugins de rendimiento (en producción)
-  const PRODUCTION = process.env.NODE_ENV === "production"
-
   if (PRODUCTION) {
-    console.log("PRODUCTION: ", PRODUCTION)
+
     await underPressureFastify(server);
     await caching(server);
     await rateLimit(server);
@@ -53,6 +51,7 @@ const registerPlugins = async () => {
 }
 
 import tack from "@/tasks"
+import seed from "@/seed"
 import router from '@/routers';
 
 (async () => {
@@ -60,28 +59,39 @@ import router from '@/routers';
   try {
     await registerPlugins()
     server.register(router, { prefix: '/' })
-    console.log(BACKEND_PORT)
     const port = Number(BACKEND_PORT) || 3500
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });
 
-    const table = new Table({
+    const tableURL = new Table({
       head: ['Servicio', 'URL'],
+      colWidths: [20, 50]
+    });
+
+    const tableInfo = new Table({
+      head: ['nombre', 'Status'],
       colWidths: [20, 50]
     });
 
     /* ejecutar tareas programadas */
     tack()
+    const semilla = await seed()
 
-    table.push(
+    tableURL.push(
       ['Servidor', colors.green(`http://localhost:${port}`)],
       ['Graphql', colors.green(`http://localhost:${port}/graphql`)],
       ["Rest API", colors.green(`http://localhost:${port}/api`)],
       ['Documentacion', colors.cyan(`http://localhost:${port}/docs`)],
-      ["db estatus", colors.cyan(dbStatus)]
     );
 
-    console.log(table.toString());
+    tableInfo.push(
+      ["db estatus", colors.cyan(dbStatus)],
+      ["semilla", colors.cyan(semilla as string)],
+      ["PRODUCTION", colors.cyan(PRODUCTION + "")],
+    )
+
+    console.log(tableURL.toString());
+    console.log(tableInfo.toString());
   } catch (err) {
     console.log(err)
   }
