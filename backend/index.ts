@@ -2,9 +2,11 @@ import Fastify, { FastifyInstance } from 'fastify'
 import Table from 'cli-table3';
 import clear from "console-clear";
 import colors from "colors";
-import 'dotenv/config';
+import dotenv from 'dotenv';
 
-const { BACKEND_PORT } = process.env;
+dotenv.config({ debug: false });
+
+const { BACKEND_PORT, PRODUCTION } = process.env;
 const server: FastifyInstance = Fastify()
 
 import {
@@ -22,11 +24,11 @@ import {
   viewEJS,
 } from "./src/config"
 
-const PRODUCTION = process.env.PRODUCTION !== "false"
+const PRODUCTIONS = PRODUCTION !== "false"
 
 const registerPlugins = async () => {
   // Plugins de rendimiento (en producción)
-  if (PRODUCTION) {
+  if (PRODUCTIONS) {
 
     await underPressureFastify(server);
     await caching(server);
@@ -47,7 +49,6 @@ const registerPlugins = async () => {
   // await proxy(server);
   // Plugins de funcionalidad
   await graphql(server);
-
 }
 
 import tack from "@/tasks"
@@ -87,7 +88,7 @@ import router from '@/routers';
     tableInfo.push(
       ["db estatus", colors.cyan(dbStatus)],
       ["semilla", colors.cyan(semilla as string)],
-      ["PRODUCTION", colors.cyan(PRODUCTION + "")],
+      ["PRODUCTION", colors.cyan(PRODUCTIONS + "")],
     )
 
     console.log(tableURL.toString());

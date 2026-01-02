@@ -1,25 +1,57 @@
 import 'dotenv/config'
 import { readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import * as readline from 'node:readline'
 
-function cleanSqliteArtifacts(provider: 'sqlite' | 'postgresql') {
+function preguntarSiNo(pregunta: string): Promise<boolean> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
 
-  // 1. Borrar carpeta de migraciones
+  return new Promise((resolve) => {
+    rl.question(`${pregunta} (s/n): `, (respuesta) => {
+      rl.close()
+      resolve(respuesta.toLowerCase() === 's' || respuesta.toLowerCase() === 'si')
+    })
+  })
+}
+
+async function cleanSqliteArtifacts(provider: 'sqlite' | 'postgresql') {
   const migrationsPath = join(process.cwd(), 'prisma', 'migrations')
-  if (existsSync(migrationsPath)) {
-    rmSync(migrationsPath, { recursive: true, force: true })
-    console.log('Carpeta prisma/migrations eliminada')
-  }
 
-  // 2. Borrar archivo .db (desde DATABASE_URL)
-  const url = process.env.DATABASE_URL ?? ''
-  if (url.startsWith('file:')) {
-    const dbPath = url.replace('file:', '')
-    const absoluteDbPath = resolve(process.cwd(), dbPath)
+  if (provider === 'postgresql') {
+    // Para PostgreSQL, preguntar antes de borrar migraciones
+    if (existsSync(migrationsPath)) {
+      const debeEliminar = await preguntarSiNo(
+        '¿Deseas borrar la carpeta de migraciones para crear una nueva migración inicial?'
+      )
 
-    if (existsSync(absoluteDbPath)) {
-      rmSync(absoluteDbPath, { force: true })
-      console.log(`Archivo SQLite eliminado: ${absoluteDbPath}`)
+      if (debeEliminar) {
+        rmSync(migrationsPath, { recursive: true, force: true })
+        console.log('Carpeta prisma/migrations eliminada')
+      } else {
+        console.log('Carpeta de migraciones conservada')
+      }
+    }
+  } else {
+    // Para SQLite, borrar todo automáticamente
+    // 1. Borrar carpeta de migraciones
+    if (existsSync(migrationsPath)) {
+      rmSync(migrationsPath, { recursive: true, force: true })
+      console.log('Carpeta prisma/migrations eliminada')
+    }
+
+    // 2. Borrar archivo .db (desde DATABASE_URL)
+    const url = process.env.DATABASE_URL ?? ''
+    if (url.startsWith('file:')) {
+      const dbPath = url.replace('file:', '')
+      const absoluteDbPath = resolve(process.cwd(), dbPath)
+
+      if (existsSync(absoluteDbPath)) {
+        rmSync(absoluteDbPath, { force: true })
+        console.log(`Archivo SQLite eliminado: ${absoluteDbPath}`)
+      }
     }
   }
 }
@@ -44,12 +76,16 @@ function updateSchema(provider: 'sqlite' | 'postgresql') {
   console.log(`Provider actualizado a: ${provider}`)
 }
 
-const url = process.env.DATABASE_URL ?? ''
-if (!url) {
-  console.error('DATABASE_URL no definido')
-  process.exit(1)
+async function main() {
+  const url = process.env.DATABASE_URL ?? ''
+  if (!url) {
+    console.error('DATABASE_URL no definido')
+    process.exit(1)
+  }
+
+  const provider = detect(url)
+  await cleanSqliteArtifacts(provider)
+  updateSchema(provider)
 }
 
-const provider = detect(url)
-cleanSqliteArtifacts(provider)
-updateSchema(provider)
+main()
