@@ -4,7 +4,7 @@ import clear from "console-clear";
 import colors from "colors";
 import 'dotenv/config';
 
-const { SERVER_PORT } = process.env;
+const { BACKEND_PORT } = process.env;
 const server: FastifyInstance = Fastify()
 
 import {
@@ -60,8 +60,8 @@ import router from '@/routers';
   try {
     await registerPlugins()
     server.register(router, { prefix: '/' })
-    console.log(SERVER_PORT)
-    const port = Number(SERVER_PORT) || 3500
+    console.log(BACKEND_PORT)
+    const port = Number(BACKEND_PORT) || 3500
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });
 

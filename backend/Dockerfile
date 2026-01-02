@@ -23,7 +23,7 @@ FROM node:22 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV SERVER_PORT=5500
+ENV BACKEND_PORT=5500
 
 # Copiamos los artefactos necesarios del builder
 COPY --from=builder /app/backend/dist ./dist

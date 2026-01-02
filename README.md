@@ -90,8 +90,8 @@ docker compose up --build
 ```
 
 Servicios y puertos:
-- Backend: http://localhost:${BACKEND_HOST_PORT}
-- Frontend (preview): http://localhost:${FRONTEND_HOST_PORT}
+- Backend: http://localhost:${BACKEND_PORT}
+- Frontend (preview): http://localhost:${FRONTEND_PORT}
 - Docs (Nginx): http://localhost:${DOCS_HOST_PORT}
 
 Detener y limpiar:
@@ -153,7 +153,7 @@ Además, el backend ejecuta `npx prisma generate` automáticamente en `dev` y `s
 - Usa `.env` en el root para parametrizar puertos y variables de los contenedores.
 - Compose carga `.env` automáticamente al ejecutar `docker compose up`.
 - Backend:
-  - `SERVER_PORT` (por defecto 5500)
+  - `BACKEND_PORT` (por defecto 5500)
   - `DATABASE_URL` (por defecto `file:./dev.db`)
   - Cargar desde `.env` si se requiere
 - Frontend:
