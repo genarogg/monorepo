@@ -1,6 +1,28 @@
 import 'dotenv/config'
-import { readFileSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs'
+import { join, resolve } from 'node:path'
+
+function cleanSqliteArtifacts(provider: 'sqlite' | 'postgresql') {
+
+  // 1. Borrar carpeta de migraciones
+  const migrationsPath = join(process.cwd(), 'prisma', 'migrations')
+  if (existsSync(migrationsPath)) {
+    rmSync(migrationsPath, { recursive: true, force: true })
+    console.log('Carpeta prisma/migrations eliminada')
+  }
+
+  // 2. Borrar archivo .db (desde DATABASE_URL)
+  const url = process.env.DATABASE_URL ?? ''
+  if (url.startsWith('file:')) {
+    const dbPath = url.replace('file:', '')
+    const absoluteDbPath = resolve(process.cwd(), dbPath)
+
+    if (existsSync(absoluteDbPath)) {
+      rmSync(absoluteDbPath, { force: true })
+      console.log(`Archivo SQLite eliminado: ${absoluteDbPath}`)
+    }
+  }
+}
 
 function detect(url: string): 'sqlite' | 'postgresql' {
   const u = url.toLowerCase()
@@ -29,4 +51,5 @@ if (!url) {
 }
 
 const provider = detect(url)
+cleanSqliteArtifacts(provider)
 updateSchema(provider)
