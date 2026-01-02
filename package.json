@@ -22,7 +22,6 @@
     "lint": "turbo run lint",
     "clean": "turbo run clean",
     "-----server-----": "-----------------------------------------",
-    "prismaProvider": "cd backend && npm run prismaProvider",
     "prismaInit": "cd backend && npm run prismaInit",
     "prismaReset": "cd backend && npx prisma migrate reset",
     "prismaMigrate": "cd backend && npx prisma migrate",
