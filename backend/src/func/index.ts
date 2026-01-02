@@ -8,8 +8,9 @@ import { createResponse, successResponse, errorResponse, warningResponse } from 
 import crearBitacora from "./crearBitacora";
 import prisma from "./prisma";
 import { getPaginacionParams, getPaginacionMeta } from "./paginar";
-import { money,moneyToString } from "./money";
+import { money, moneyToString } from "./money";
 import { guardarArchivo as uploadCloudinary } from "./uplodCloudinary"
+import { getNextYear, getDate, dateToString } from "./date"
 
 export {
     log,
@@ -29,5 +30,8 @@ export {
     getPaginacionMeta,
     money,
     moneyToString,
-    uploadCloudinary
+    uploadCloudinary,
+    getNextYear,
+    getDate,
+    dateToString
 };
