@@ -41,6 +41,7 @@ enum AccionesBitacora {
   DELETE_USER
   VIEW
   ERROR
+  GET_USUARIOS
 }
 
 enum Rol {

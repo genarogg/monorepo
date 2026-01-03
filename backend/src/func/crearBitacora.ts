@@ -18,16 +18,18 @@ const crearBitacora = async ({
 }: CrearBitacoraArgs) => {
   try {
     const accionLimpia = accion.trim().toLowerCase();
+    const literarIP = ip || "N/A";
 
     const bitacora = await prisma.bitacora.create({
       data: {
         usuarioId,
         accion: accionLimpia,
-        ip,
+        ip: literarIP,
         mensaje,
         type,
       },
     });
+
     return bitacora;
   } catch (error) {
     console.error("Error al crear la bitácora:", error);

@@ -11,6 +11,7 @@ import { getPaginacionParams, getPaginacionMeta } from "./paginar";
 import { money, moneyToString } from "./money";
 import { guardarArchivo as uploadCloudinary } from "./uplodCloudinary"
 import { getNextYear, getDate, dateToString } from "./date"
+import { sendEmail } from "../email"
 
 export {
     log,
@@ -33,5 +34,6 @@ export {
     uploadCloudinary,
     getNextYear,
     getDate,
-    dateToString
+    dateToString,
+    sendEmail
 };

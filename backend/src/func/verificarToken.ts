@@ -1,16 +1,25 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { prisma, errorResponse } from "@fn"
+import { prisma } from "@fn";
+import { Usuario } from "@prisma/my-client"
 
+interface AuthResponse {
+    isAuthenticated: boolean;
+    usuario: Usuario | null;
+}
 
-const verificarToken = async (token: string) => {
+const verificarToken = async (token: string): Promise<AuthResponse> => {
     const JWTSECRETO = process.env.JWTSECRETO || "jwt-secret";
+    const payloadFail = {
+        isAuthenticated: false,
+        usuario: null,
+    };
 
     try {
-        const payload = jwt.verify(token, JWTSECRETO) as JwtPayload | undefined;
+        const payload = jwt.verify(token, JWTSECRETO) as JwtPayload;
 
-        if (!payload || !payload.id) {
+        if (!payload?.id) {
             console.error("Token inválido o sin ID");
-            return { payload, isAuthenticated: false };
+            return payloadFail;
         }
 
         const usuario = await prisma.usuario.findUnique({
@@ -19,13 +28,17 @@ const verificarToken = async (token: string) => {
 
         if (!usuario) {
             console.error("Usuario no encontrado");
-            return { payload, isAuthenticated: false };
+            return payloadFail
         }
 
-        return { ...usuario, isAuthenticated: true };
+        return {
+            isAuthenticated: true,
+            usuario,
+        };
+
     } catch (err) {
         console.error("Error al verificar el token:", err);
-        return errorResponse({ message: "Error al verificar el token" });
+        return payloadFail
     }
 };
 
