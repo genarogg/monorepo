@@ -10,12 +10,19 @@ import { createReadStream, existsSync } from 'node:fs'
 import resolvers from '@/graphql/resolvers'
 
 
+import generateEnumsSchema from '@/graphql/schema/enums'
+
 function loadTypeDefs() {
     const dir = join(process.cwd(), 'src', 'graphql', 'schema')
     const files = readdirSync(dir).filter((f) => f.endsWith('.graphql'))
-    const sdl = files
+    let sdl = files
         .map((f) => readFileSync(join(dir, f), 'utf8'))
         .join('\n')
+    
+    // Inyectar enums dinámicos
+    const enumsSdl = generateEnumsSchema();
+    sdl += '\n' + enumsSdl;
+
     return gql(sdl)
 }
 

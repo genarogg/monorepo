@@ -24,16 +24,14 @@ const loginUsuario = async (_: unknown, args: LoginUsuarioArgs) => {
         return errorResponse({ message: "Email y contraseña son obligatorios" });
     }
 
-    if (!captchaToken) {
-        return errorResponse({ message: "Captcha requerido" });
+    if (captchaToken) {
+        const captchaValido = await validarCapchat(captchaToken);
+
+        if (!captchaValido) {
+            return errorResponse({ message: "Captcha inválido" });
+        }
     }
-
-    const captchaValido = await validarCapchat(captchaToken);
-
-    if (!captchaValido) {
-        return errorResponse({ message: "Captcha inválido" });
-    }
-
+    
     try {
         const usuario = await prisma.usuario.findUnique({
             where: { email }

@@ -25,14 +25,12 @@ const registerUsuario = async (_: unknown, args: RegisterUsuarioArgs) => {
         return errorResponse({ message: "Todos los campos son obligatorios" });
     }
 
-    if (!captchaToken) {
-        return errorResponse({ message: "Captcha requerido" });
-    }
+    if (captchaToken) {
+        const captchaValido = await validarCapchat(captchaToken);
 
-    const captchaValido = await validarCapchat(captchaToken);
-
-    if (!captchaValido) {
-        return errorResponse({ message: "Captcha inválido" });
+        if (!captchaValido) {
+            return errorResponse({ message: "Captcha inválido" });
+        }
     }
 
     try {
