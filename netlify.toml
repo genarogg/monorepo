@@ -1,7 +1,7 @@
 [build]
-  command = "rm -rf node_modules package-lock.json && npm install && npm run build:static"
-  publish = "frontend/dist"
+command = "rm -rf node_modules package-lock.json && npm install && npm run build:static && npm run start:static"
+publish = "frontend/dist"
 
 [build.environment]
-  NODE_VERSION = "22"
-  NPM_FLAGS = "--legacy-peer-deps"
+NODE_VERSION = "22"
+NPM_FLAGS = "--legacy-peer-deps"
