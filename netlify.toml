@@ -1,0 +1,9 @@
+[build]
+  command = "turbo run build --filter docs"
+  publish = "docs/dist"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "18"
