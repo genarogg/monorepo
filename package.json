@@ -14,10 +14,12 @@
   ],
   "scripts": {
     "dev": "turbo run dev --parallel",
+    "dev:static": "turbo run dev --parallel  --filter=frontend --filter=docs",
     "dev:server": "turbo run dev --filter=backend",
     "dev:client": "turbo run dev --filter=frontend",
     "build": "turbo run build",
     "start": "turbo run start",
+    "start:static": "turbo run start --filter=frontend --filter=docs",
     "docs": "npm run dev -w docs",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
