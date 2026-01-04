@@ -35,10 +35,7 @@
     "publicar": "cd lib && npm run publicar"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "^6.1.0",
-    "@graphql-codegen/typescript": "^5.0.7",
-    "@graphql-codegen/typescript-operations": "^5.0.7",
-    "@graphql-codegen/typescript-react-apollo": "^4.3.4"
+    "turbo": "^2.7.2"
   },
   "packageManager": "npm@10.9.4"
 }
