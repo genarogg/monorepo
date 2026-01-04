@@ -18,6 +18,7 @@
     "dev:server": "turbo run dev --filter=backend",
     "dev:client": "turbo run dev --filter=frontend",
     "build": "turbo run build --filter=backend --filter=frontend --filter=docs",
+    "build:static": "turbo run build --filter=frontend --filter=docs",
     "start": "turbo run start",
     "start:static": "turbo run start --filter=frontend --filter=docs",
     "docs": "npm run dev -w docs",
