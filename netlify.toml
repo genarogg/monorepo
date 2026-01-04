@@ -1,9 +1,7 @@
 [build]
-  command = "turbo run build --filter docs"
+  command = "rm -rf node_modules package-lock.json && npm install && turbo run build --filter docs"
   publish = "docs/dist"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--legacy-peer-deps"
