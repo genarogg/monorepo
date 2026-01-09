@@ -32,7 +32,9 @@
     "prismaGenerate": "cd backend && npx prisma generate",
     "enumGenerar": "cd backend && npm run enumGenerar",
     "-----lib-----": "-----------------------------------------",
-    "publicar": "cd lib && npm run publicar"
+    "publicar": "cd lib && npm run publicar",
+    "-----Global-----": "-----------------------------------------",
+    "clean:install": "node ./global/clean.js && npm install"
   },
   "dependencies": {
     "turbo": "^2.7.2"
