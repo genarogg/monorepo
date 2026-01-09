@@ -28,7 +28,7 @@
     "prismaInit": "cd backend && npm run prismaInit",
     "prismaReset": "cd backend && npx prisma migrate reset",
     "prismaMigrate": "cd backend && npx prisma migrate",
-    "prismaMigrateOnli": "cd backend && npx prisma migrate --create-only",
+    "prismaMigrateOnly": "cd backend && npx prisma migrate --create-only",
     "prismaGenerate": "cd backend && npx prisma generate",
     "enumGenerar": "cd backend && npm run enumGenerar",
     "-----lib-----": "-----------------------------------------",

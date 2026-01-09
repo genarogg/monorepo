@@ -1,8 +1,7 @@
-import { FastifyInstance } from 'fastify';
-import type { FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 
 const controller = (request: FastifyRequest, reply: FastifyReply) => {
-    return reply.view("home");
+    return reply.send({ message: "Hello from the API!" });
 }
 
 const router = async (fastify: FastifyInstance) => {

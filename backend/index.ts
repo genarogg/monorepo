@@ -7,21 +7,19 @@ import dotenv from 'dotenv';
 dotenv.config({ debug: false });
 
 const { BACKEND_PORT, PRODUCTION } = process.env;
+
 const server: FastifyInstance = Fastify()
 
 import {
   dbConection,
-  staticFiles,
   caching,
   helmet,
   rateLimit,
   underPressureFastify,
   corsFastify,
   compressFastify,
-  // proxy,
   multipart,
   graphql,
-  viewEJS,
 } from "./src/config"
 
 const PRODUCTIONS = PRODUCTION !== "false"
@@ -29,25 +27,18 @@ const PRODUCTIONS = PRODUCTION !== "false"
 const registerPlugins = async () => {
   // Plugins de rendimiento (en producción)
   if (PRODUCTIONS) {
-
     await underPressureFastify(server);
     await caching(server);
     await rateLimit(server);
   }
 
   // Plugins de configuración básica primero
-  await viewEJS(server);
   await helmet(server);
   await corsFastify(server);
   await compressFastify(server);
 
   // Plugins de parsing
   await multipart(server);
-
-  // Plugins de vista y archivos estáticos
-  await staticFiles(server);
-  // await proxy(server);
-  // Plugins de funcionalidad
   await graphql(server);
 }
 
@@ -60,7 +51,7 @@ import router from '@/routers';
   try {
     await registerPlugins()
     server.register(router, { prefix: '/' })
-    const port = Number(BACKEND_PORT) || 3500
+    const port = Number(BACKEND_PORT) || 4000
     const dbStatus = await dbConection() || "";
     await server.listen({ port, host: '0.0.0.0' });
 
@@ -82,7 +73,6 @@ import router from '@/routers';
       ['Servidor', colors.green(`http://localhost:${port}`)],
       ['Graphql', colors.green(`http://localhost:${port}/graphql`)],
       ["Rest API", colors.green(`http://localhost:${port}/api`)],
-      ['Documentacion', colors.cyan(`http://localhost:${port}/docs`)],
     );
 
     tableInfo.push(

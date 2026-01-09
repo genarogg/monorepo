@@ -15,7 +15,7 @@
     "prismaInit": "tsx scripts/prismaProvider.ts && npx prisma migrate dev --name init",
     "prismaReset": "npx prisma migrate reset",
     "prismaMigrate": "npx prisma migrate",
-    "prismaMigrateOnli": "npx prisma migrate --create-only",
+    "prismaMigrateOnly": "npx prisma migrate --create-only",
     "prismaGenerate": "npx prisma generate",
     "-----GraphQL-----": "-----------------------------------------",
     "enumGenerar": "graphql-codegen --config codegen.yml"
