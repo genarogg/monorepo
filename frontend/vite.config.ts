@@ -22,7 +22,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ["@monaco-editor/react"],
   },
-  
+
   server: {
     host: '0.0.0.0',
     allowedHosts: true,
@@ -34,6 +34,15 @@ export default defineConfig({
         ws: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+
+      // ✅ GraphQL
+      '/graphql': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+
       '/docs': {
         target: 'http://localhost:4500',
         changeOrigin: true,
@@ -66,6 +75,7 @@ export default defineConfig({
       },
     }
   },
+
   preview: {
     host: '0.0.0.0',
     allowedHosts: true,
@@ -77,6 +87,15 @@ export default defineConfig({
         ws: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+
+      // ✅ GraphQL
+      '/graphql': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+
       '/docs': {
         target: 'http://localhost:4500',
         changeOrigin: true,

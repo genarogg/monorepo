@@ -5,6 +5,13 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	base: '/docs',
+	redirects: {
+		'/': '/docs/guides/example',
+	},
+	server: {
+		host: '0.0.0.0',
+		allowedHosts: true,
+	},
 	integrations: [
 		starlight({
 			title: 'My Docs',
