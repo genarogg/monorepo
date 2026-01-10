@@ -1,5 +1,5 @@
 import { prisma } from "@fn";
-import { AccionesBitacora } from "@prismaClient";
+import { AccionesBitacora } from "@prisma/client";
 
 interface CrearBitacoraArgs {
   usuarioId: number;

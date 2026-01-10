@@ -5,7 +5,7 @@ import {
     verificarToken,
     crearBitacora
 } from "@fn";
-import { Prisma, Rol, AccionesBitacora } from "@prismaClient";
+import { Prisma, Rol, AccionesBitacora } from "@prisma/client";
 
 interface GetUsuariosArgs {
     token: string;

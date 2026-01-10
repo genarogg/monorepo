@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { prisma } from "@fn";
-import { Usuario } from "@prismaClient"
+import { Usuario } from "@prisma/client"
 
 interface AuthResponse {
     isAuthenticated: boolean;
