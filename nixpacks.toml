@@ -5,6 +5,9 @@ nixPkgs = ['nodejs_22', 'npm-9_x']
 DATABASE_URL = "postgresql://postgres:kcRLdOCiTGtx095czbigS4w3Z4vsPp8dTpHTlpngAsg25ofQ6PreK1fDdJ4orZue@72.62.14.203:8987/demo"
 PRODUCTION = "true"
 
+[build]
+env = ["DATABASE_URL"]
+
 [phases.install]
 cmds = [
   'rm -rf node_modules package-lock.json lib',
@@ -15,6 +18,3 @@ cmds = [
 cmds = [
   'npm run build',
 ]
-
-[start]
-cmd = 'npm run start'
