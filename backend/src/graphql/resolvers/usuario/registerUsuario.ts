@@ -7,7 +7,7 @@ import {
     generarToken,
     validarCapchat
 } from "@fn";
-import { AccionesBitacora, Rol } from "@prisma/my-client";
+import { AccionesBitacora, Rol } from "@prismaClient";
 
 interface RegisterUsuarioArgs {
     name: string;
