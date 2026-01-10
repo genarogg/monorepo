@@ -1,15 +1,19 @@
 [phases.setup]
 nixPkgs = ['nodejs_22', 'npm-9_x']
 
+[env]
+DATABASE_URL = "postgresql://postgres:kcRLdOCiTGtx095czbigS4w3Z4vsPp8dTpHTlpngAsg25ofQ6PreK1fDdJ4orZue@72.62.14.203:8987/demo"
+PRODUCTION = "true"
+
 [phases.install]
 cmds = [
-    'rm -rf node_modules package-lock.json lib',
-    'npm install --legacy-peer-deps'
+  'rm -rf node_modules package-lock.json lib',
+  'npm install --legacy-peer-deps',
 ]
 
 [phases.build]
 cmds = [
-    'npm run build'
+  'npm run build',
 ]
 
 [start]
