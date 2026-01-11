@@ -1,3 +1,18 @@
+// Convierte este schema de Prisma a formato database.build, incluyendo:
+// - Todas las tablas con sus columnas y tipos de datos
+// - Claves primarias (pk)
+// - Claves foráneas (fk) con sus relaciones
+// - Campos únicos (unique)
+// - Valores por defecto cuando sean relevantes
+// - Omite de las tablas los valores createdAt y updatedAt
+// - Los enums como tablas de referencia
+
+// -------------------------------------------
+// refactoriza el orden de las tablas para que la creacion
+// de las tablas se hagan en el orden correcto
+// -------------------------------------------
+
+
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
