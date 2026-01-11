@@ -8,7 +8,7 @@ import {
     validarCapchat
 } from "@fn";
 
-import { AccionesBitacora } from "@prisma/client";
+import { AccionesBitacora } from "@my-prisma/client";
 
 interface LoginUsuarioArgs {
     email: string;

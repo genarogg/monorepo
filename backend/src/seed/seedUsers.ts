@@ -1,5 +1,5 @@
 import { encriptarContrasena, prisma } from "@fn";
-import { Rol } from "@prisma/client";
+import { Rol } from "@my-prisma/client";
 
 const seedUsers = async () => {
     const users = [

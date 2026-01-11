@@ -1,7 +1,7 @@
 
 import { prisma, verificarToken, successResponse, errorResponse, crearBitacora, encriptarContrasena, generarToken } from '@fn';
 
-import { AccionesBitacora } from "@prisma/client";
+import { AccionesBitacora } from "@my-prisma/client";
 
 interface resetPassWithTokenArgs {
     token: string;

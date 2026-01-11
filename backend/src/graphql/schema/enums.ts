@@ -1,4 +1,4 @@
-import * as PrismaModule from '@prisma/client';
+import * as PrismaModule from '@my-prisma/client';
 
 const createEnumString = (enumObj: object) => {
     const keys = Object.keys(enumObj);
