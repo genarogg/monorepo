@@ -6,25 +6,6 @@ import { fileURLToPath } from "url"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-
-const proxy = {
-  '/api': {
-    target: 'http://localhost:4000',
-    changeOrigin: true,
-    secure: false,
-    ws: true,
-    rewrite: (path: any) => path.replace(/^\/api/, ''),
-  },
-
-
-  '/docs': {
-    target: 'http://localhost:4500',
-    changeOrigin: true,
-    secure: false,
-    ws: true,
-  },
-}
-
 export default defineConfig({
   plugins: [
     react({
@@ -45,16 +26,106 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: true,
-    proxy: proxy,
-    hmr: {
-      overlay: false
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+
+      // ✅ GraphQL
+      '/graphql': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+
+      '/docs': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/docs/_astro': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/_astro': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/@id': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/@fs': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
     }
   },
 
   preview: {
     host: '0.0.0.0',
     allowedHosts: true,
-    proxy: proxy,
-    
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+
+      // ✅ GraphQL
+      '/graphql': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+
+      '/docs': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/docs/_astro': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/_astro': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/@id': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      '/@fs': {
+        target: 'http://localhost:4500',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+    },
   },
 })

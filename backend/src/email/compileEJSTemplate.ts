@@ -1,17 +1,10 @@
 import * as util from "util";
-import * as ejs from "ejs";
+import ejs from "ejs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Obtener __dirname equivalente en ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const renderFileAsync: (
-  path: string,
-  data?: object,
-  options?: ejs.Options
-) => Promise<string> = util.promisify(ejs.renderFile);
 
 /**
  * Compila un archivo EJS con los datos proporcionados y devuelve el HTML resultante.
@@ -28,10 +21,9 @@ const compileEJSTemplate = async (
   const templatePath = path.join(__dirname, `/ejs/${templateName}.ejs`);
 
   try {
-    const html = await renderFileAsync(templatePath, data);
+    const html = await ejs.renderFile(templatePath, data);
     return html;
   } catch (err) {
-    // Lanza el error para que pueda ser manejado por el llamador
     throw new Error(
       `Error al renderizar el template EJS (${templateName}): ${err}`
     );
