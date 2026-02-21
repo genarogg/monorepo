@@ -5,9 +5,9 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	base: '/docs',
-	redirects: {
-		'/': '/docs/guides/example',
-	},
+	// redirects: {
+	// 	'/': '/docs/guides/example',
+	// },
 	server: {
 		host: '0.0.0.0',
 		allowedHosts: true,
@@ -20,7 +20,7 @@ export default defineConfig({
 				{
 					label: 'Guides',
 					items: [
-						// Each item here is one entry in the navigation menu.
+					
 						{ label: 'Example Guide', slug: 'guides/example' },
 					],
 				},

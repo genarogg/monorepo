@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  LayoutPDF,
-
-  P,
-
-} from "react-pdf-levelup";
+import { Layout, P } from "@react-pdf-levelup/core";
 
 const Component = ({ data }:any) => {
   const Footer = () => {
@@ -16,7 +11,7 @@ const Component = ({ data }:any) => {
   };
 
   return (
-    <LayoutPDF footer={<Footer />} pagination={true}>
+    <Layout footer={<Footer />} pagination={true}>
       <P>
         Lorem ipsum acts as a stand-in for actual text when the final content is
         not yet available. This allows designers to focus on layout and visual
@@ -30,7 +25,7 @@ const Component = ({ data }:any) => {
         Latin, the text is not meant to be meaningful and is often used as a
         clear indicator that the space is reserved for actual content.
       </P>
-    </LayoutPDF>
+    </Layout>
   );
 };
 
