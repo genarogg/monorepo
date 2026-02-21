@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "devs": "npm run prismaInit && npm run dev",
-    "build": "turbo run build --filter=backend --filter=frontend --filter=docs",
+    "build": "npm run sync:env && turbo run build --filter=backend --filter=frontend --filter=docs",
     "start": "turbo run start",
     "docs": "npm run dev -w docs",
     "lint": "turbo run lint",
@@ -27,11 +27,13 @@
     "prismaMigrate": "cd backend && npx prisma migrate",
     "prismaMigrateOnly": "cd backend && npx prisma migrate --create-only",
     "prismaGenerate": "cd backend && npx prisma generate",
-    "enumGenerar": "cd backend && npm run enumGenerar",
     "-----lib-----": "-----------------------------------------",
     "publicar": "cd lib && npm run publicar",
     "-----Global-----": "-----------------------------------------",
-    "clean:install": "node ./global/clean.js && npm install"
+    "clean:install": "node ./global/clean.js && npm install",
+    "sync:global": "node ./global/syncToModules.js",
+    "sync:env": "node ./global/envPropagation.js",
+    "enumGenerar": "cd backend && npm run enumGenerar && cd.. && npm run sync:global"
   },
   "dependencies": {
     "turbo": "^2.7.2"
