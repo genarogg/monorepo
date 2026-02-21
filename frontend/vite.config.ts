@@ -17,7 +17,7 @@ const proxy = {
 
   // ✅ GraphQL
   '/graphql': {
-    target: 'http://localhost:4000/graphql',
+    target: 'http://localhost:4000',
     changeOrigin: true,
     secure: false,
     ws: true,
