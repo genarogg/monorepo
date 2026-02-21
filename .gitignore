@@ -49,5 +49,5 @@ backend/prisma/fn/client
 
 backend/prisma/client/*
 
-.env
-example.env
+# .env
+# example.env
