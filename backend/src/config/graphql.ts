@@ -32,6 +32,7 @@ export async function registerGraphQL(app: FastifyInstance) {
         typeDefs,
         resolvers,
         plugins: [fastifyApolloDrainPlugin(app), ApolloServerPluginLandingPageLocalDefault()],
+        introspection: true
     })
     await server.start()
     app.addHook('preValidation', async (request, reply) => {
