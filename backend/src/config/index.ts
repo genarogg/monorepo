@@ -12,7 +12,6 @@ import compressFastify from './compressFastify';
 import multipart from './multipar';
 import dbConection from './db-conection';
 
-
 export {
     graphql,
     caching,
