@@ -8,19 +8,12 @@ const __dirname = path.dirname(__filename)
 
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler']],
-      },
-    }),
+    react(),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  optimizeDeps: {
-    include: ["@monaco-editor/react"],
   },
 
   server: {

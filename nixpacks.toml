@@ -1,10 +1,6 @@
 [phases.setup]
 nixPkgs = ['nodejs_22', 'npm-9_x']
 
-[env]
-DATABASE_URL = "postgresql://postgres:kcRLdOCiTGtx095czbigS4w3Z4vsPp8dTpHTlpngAsg25ofQ6PreK1fDdJ4orZue@72.62.14.203:8987/demo"
-PRODUCTION = "true"
-
 [build]
 env = ["DATABASE_URL"]
 

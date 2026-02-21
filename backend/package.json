@@ -7,7 +7,7 @@
     "node": "22"
   },
   "scripts": {
-    "dev": "npx prisma generate && tsx watch index.ts",
+    "dev": "npx prisma generate && bun --watch run index.ts",
     "-----Product-----": "-----------------------------------------",
     "build": "rimraf dist && npx prisma generate && tsc -p tsconfig.json && tsc-alias -p tsconfig.json && node scripts/add-js-ext.js",
     "start": "set PRODUCTION=false && node dist/index.js",
