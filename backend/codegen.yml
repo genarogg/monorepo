@@ -6,3 +6,5 @@ generates:
     config:
       onlyEnums: true
       enumsAsTypes: false
+      namingConvention:
+        enumValues: upper-case#upperCase
